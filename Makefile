@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/24 18:06:28 by nanasser          #+#    #+#              #
-#    Updated: 2025/05/21 01:09:36 by marvin           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 
 OBJ_PATH = obj/
 LIBFT_PATH = libft/
@@ -35,39 +25,44 @@ MAKEFLAGS += --no-print-directory
 
 SPINNER = \
 	( \
-		spin='|/-\\'; \
 		i=0; \
 		while kill -0 $$! 2>/dev/null; do \
-			i=`expr $$i + 1`; \
-			case $$i in \
-				1) c="|" ;; \
-				2) c="/" ;; \
-				3) c="-" ;; \
-				4) c="\\\\"; i=0 ;; \
+			case $$((i % 6)) in \
+				0) c="\033[0;31m|" ;; \
+				1) c="\033[0;33m/" ;; \
+				2) c="\033[0;32m-" ;; \
+				3) c="\033[0;36m\\" ;; \
+				4) c="\033[0;34m|" ;; \
+				5) c="\033[0;35m/" ;; \
 			esac; \
-			printf "\r$(YELLOW)Main Make on the way... $$c$(WHITE)"; \
+			printf "\r$(WHITE)Main Make on the way... $$c"; \
+			i=$$(expr $$i + 1); \
 			sleep 0.1; \
 		done; \
-		printf "\r\033[KMain program is $(GREEN)ready! ✅\n"; \
+		printf "\r\033[K$(WHITE)Main program is $(BGREEN)ready! ✅\033[0m\n"; \
+		echo "$(BGREEN)Full Build Fini!.$(WHITE)"; \
 	)
 
 SPINNER2 = \
 	( \
-		spin='|/-\\'; \
 		i=0; \
 		while kill -0 $$! 2>/dev/null; do \
-			i=`expr $$i + 1`; \
-			case $$i in \
-				1) c="|" ;; \
-				2) c="/" ;; \
-				3) c="-" ;; \
-				4) c="\\\\"; i=0 ;; \
+			case $$((i % 6)) in \
+				0) c="\033[0;31m|" ;; \
+				1) c="\033[0;33m/" ;; \
+				2) c="\033[0;32m-" ;; \
+				3) c="\033[0;36m\\" ;; \
+				4) c="\033[0;34m|" ;; \
+				5) c="\033[0;35m/" ;; \
 			esac; \
-			printf "\r$(YELLOW)Libft Make on the way... $$c$(WHITE)"; \
+			printf "\r$(WHITE)Libft Make on the way... $$c"; \
+			i=$$(expr $$i + 1); \
 			sleep 0.1; \
 		done; \
-		printf "\r\033[KLibft is $(GREEN)ready! ✅\n$(WHITE)"; \
+		printf "\r\033[K$(WHITE)Libft is $(BGREEN)ready! ✅\033[0m\n"; \
 	)
+
+
 
 all:$(NAME)
 
@@ -76,24 +71,13 @@ $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 		cp $(LIBFT) $(NAME) && \
 		ar -rcs $(NAME) $(OBJ) $(OBJ2); \
 	} & \
-	$(SPINNER); \
-	status=$$?; \
-	if [ $$status -ne 0 ]; then \
-		printf "\n$(RED)❌❌ERRRRRRR💢💢💢💢 CHECK THE ERROR ABOVE$(WHITE)"; \
-		exit $$status; \
-	fi
-	@echo "$(BGREEN)Full Build Fini!.$(WHITE)"
+	$(SPINNER)
 
 $(LIBFT):
 	@{ \
 		make -C $(LIBFT_PATH) all; \
 	} & \
-	$(SPINNER2); \
-	status=$$?; \
-	if [ $$status -ne 0 ]; then \
-		printf "\n$(RED)❌❌ERRRRRRR💢💢💢💢 CHECK THE ERROR ABOVE$(WHITE)"; \
-		exit $$status; \
-	fi
+	$(SPINNER2)
 
 $(OBJ_PATH)%.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
