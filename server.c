@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nanasser <nanasser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 03:45:36 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/21 04:14:53 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/21 20:24:06 by nanasser          #+#    #+#             */
+/*   Updated: 2025/05/21 20:25:46 by nanasser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h" // for ft_atoi and ft_printf
-#include <signal.h>
+#include "Libft/libft.h" // for ft_atoi and ft_printf
+#include <signal.h> // for server signals
 
 void	handler(int sig)
 {

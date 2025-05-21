@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nanasser <nanasser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 03:45:31 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/21 03:45:31 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/21 20:24:17 by nanasser          #+#    #+#             */
+/*   Updated: 2025/05/21 20:24:17 by nanasser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h" // for ft_atoi and ft_printf
-#include <signal.h>
+#include "Libft/libft.h" // for ft_atoi and ft_printf
+#include <signal.h> // for server signals
 
 static void	send_signal(int num, int pid)
 {
