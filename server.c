@@ -1,11 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/21 03:45:36 by marvin            #+#    #+#             */
+/*   Updated: 2025/05/21 04:14:53 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft/libft.h" // for ft_atoi and ft_printf
+#include <signal.h>
+
+void	handler(int sig)
+{
+	static char	byte;
+	static int	bits;
+
+	byte <<= 1;
+	bits++;
+	if (sig == SIGUSR1)
+		byte |= 1;
+	if (bits == 8)
+	{
+		ft_putchar_fd(byte, 1);
+		byte = 0;
+		bits = 0;
+	}
+}
 
 int	main(int ac, char **av)
 {
+	int	pid;
+
+	(void)av;
 	if (ac == 1)
 	{
-
+		pid = getpid();
+		ft_printf("PID %d\n", pid);
+		ft_printf("Awaiting Prompt...\n");
+		while (ac == 1)
+		{
+			signal(SIGUSR1, handler);
+			signal(SIGUSR2, handler);
+			pause();
+		}
 	}
-	write(1, "\n", 1);
+	else
+	{
+		ft_printf("real funny. Run ./server\n");
+		return (0);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 20:59:57 by nanasser          #+#    #+#             */
-/*   Updated: 2025/05/21 00:28:01 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/21 03:44:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>
+
 typedef struct s_list
 {
 	void			*content;
