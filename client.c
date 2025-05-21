@@ -13,7 +13,7 @@
 #include "libft/libft.h" // for ft_atoi and ft_printf
 #include <signal.h>
 
-static void	send_signal(int	num, int pid)
+static void	send_signal(int num, int pid)
 {
 	int	bytes[8];
 	int	i;
